@@ -6,7 +6,7 @@ var SBNation = {
         $$('script').each(function(script){
             if(/sbnation\.com\/javascripts\/universal/i.test(script.src)){
                 SBNation.IsSBN = true;   
-                alert(script.src);
+
             }
         });
 
@@ -28,7 +28,7 @@ SBNation.Notification = {
     Setup: function(){
         if(!SBNation.IsValidSite())
             return;
-        
+
         SBNation.AppendScript('https://github.com/wadetandy/SBNation-Comment-Notifier/raw/master/include.js');
     }
 }
