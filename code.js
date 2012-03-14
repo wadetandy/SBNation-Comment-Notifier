@@ -3,10 +3,10 @@ var SBNation = {
         if(SBNation.IsSBN)
             return truea
 
-        $('script').each(function(index){
-            var src = $(this).attr('src')
-            if(/sbnation\.com\/javascripts\/universal/i.test(src)){
+        $$('script').each(function(script){
+            if(/sbnation\.com\/javascripts\/universal/i.test(script.src)){
                 SBNation.IsSBN = true;   
+                alert(script.src);
             }
         });
 
@@ -21,7 +21,7 @@ SBNation.AppendScript = function(url){
     script.type = 'text/javascript';
     script.src = url;
 
-    $('body').append(script);
+    $$('body')[0].appendChild(script);
 }
 
 SBNation.Notification = {
