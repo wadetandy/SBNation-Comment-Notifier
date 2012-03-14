@@ -15,7 +15,7 @@ Effect.OriginalAppear = Effect.Appear;
 
 Effect.Appear = function(item) {
     if(item == 'autoupdate_info'){
-        notify = webkitNotifications.createNotification(Notification.Icon, 'CasualHoya', 'New Comments at CasualHoya');
+        notify = webkitNotifications.createNotification(Notification.Icon(), 'CasualHoya', 'New Comments at CasualHoya');
 
         notify.onclick = Notification.OnClick;
         notify.replaceid = window.location.href;
