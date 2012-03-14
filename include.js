@@ -1,3 +1,5 @@
+jQuery.noConflict(true);
+
 var Notification = {
     Window: window,
     ShouldShow: false,
