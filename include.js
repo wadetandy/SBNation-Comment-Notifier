@@ -1,6 +1,6 @@
 var NotificationWindow = window;
 
-var Notification = function(){
+var Notification = {
     OnClick: function(e){
         NotificationWindow.focus();
 
