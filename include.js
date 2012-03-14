@@ -9,7 +9,7 @@ var Notification = {
     },
     OnError: function(e){
         console.log('there was an error with this notification');
-    }
+    },
     Icon: function(){
         return $$('#logo img')[0].src;
     },
