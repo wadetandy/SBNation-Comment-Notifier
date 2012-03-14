@@ -31,12 +31,10 @@ var Notification = {
 }
 
 Notification.Window.onblur = function(){
-    console.log('blur');
     Notification.ShouldShow = true;
 }
 
 Notification.Window.onfocus = function(){
-    console.log('focus');
     Notification.ShouldShow = false;
 }
 
