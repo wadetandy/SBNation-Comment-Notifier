@@ -8,13 +8,13 @@ var Notification = {
     },
     Icon: function(){
         return $$('#logo img')[0].src;
-    }
+    },
     Title: function(){
         return $$('#logo img')[0].alt;
-    }
+    },
     Body: function(){
         return 'New Comments on ' + document.title;
-    }
+    },
 }
 
 Effect.OriginalAppear = Effect.Appear;
