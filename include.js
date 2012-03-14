@@ -1,8 +1,9 @@
-var NotificationWindow = window;
-
 var Notification = {
+    Window: window,
+    ShouldShow: false,
     OnClick: function(e){
-        NotificationWindow.focus();
+        Notification.Window.focus();
+        Notification.Active = undefined;
 
         e.target.cancel();
     },
@@ -15,19 +16,38 @@ var Notification = {
     Body: function(){
         return 'New Comments on ' + document.title;
     },
+    CreateAndShow: function(){
+        if(!Notification.ShouldShow){
+            return;
+        }
+        
+        Notification.Active = webkitNotifications.createNotification(Notification.Icon(), Notification.Title(), Notification.Body());
+
+        Notification.Active.onclick = Notification.OnClick;
+        Notification.Active.replaceid = Notification.Window.location.href;
+
+        Notification.Active.show();
+    }
+}
+
+Notification.Window.onblur = function(){
+    console.log('blur');
+    Notification.ShouldShow = true;
+}
+
+Notification.Window.onfocus = function(){
+    console.log('focus');
+    Notification.ShouldShow = false;
 }
 
 Effect.OriginalAppear = Effect.Appear;
 
 Effect.Appear = function(item) {
     if(item == 'autoupdate_info'){
-        notify = webkitNotifications.createNotification(Notification.Icon(), Notification.Title(), Notification.Body());
-
-        notify.onclick = Notification.OnClick;
-        notify.replaceid = window.location.href;
-
-        notify.show();
+        
     }
 
     return Effect.OriginalAppear(item);
 }
+
+Notification.CreateAndShow();
