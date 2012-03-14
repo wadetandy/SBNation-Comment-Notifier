@@ -16,6 +16,9 @@ var Notification = {
     Body: function(){
         return 'New Comments on ' + document.title;
     },
+    ReplaceID: function(){
+        Notification.Window.location.href;
+    },
     CreateAndShow: function(){
         if(!Notification.ShouldShow){
             return;
@@ -24,10 +27,10 @@ var Notification = {
         Notification.Active = webkitNotifications.createNotification(Notification.Icon(), Notification.Title(), Notification.Body());
 
         Notification.Active.onclick = Notification.OnClick;
-        Notification.Active.replaceid = Notification.Window.location.href;
+        Notification.Active.replaceid = Notification.ReplaceID();
 
         Notification.Active.show();
-    }
+    },
 }
 
 Notification.Window.onblur = function(){
