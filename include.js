@@ -5,6 +5,20 @@ var Notification = {
         NotificationWindow.focus();
 
         e.target.cancel();
+    },
+    Icon: function(){
+        found = null;
+        $$('link').each(function(link){
+            if(link.rel == 'shortcut icon'){
+                found = item;
+            }
+        }
+        
+        if(found == null){
+            return "";
+        }else{
+            return item.href
+        }
     }
 }
 
@@ -12,7 +26,7 @@ Effect.OriginalAppear = Effect.Appear;
 
 Effect.Appear = function(item) {
     if(item == 'autoupdate_info'){
-        notify = webkitNotifications.createNotification('', 'CasualHoya', 'New Comments at CasualHoya');
+        notify = webkitNotifications.createNotification(Notification.Icon, 'CasualHoya', 'New Comments at CasualHoya');
 
         notify.onclick = Notification.OnClick;
 
