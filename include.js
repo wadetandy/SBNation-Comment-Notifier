@@ -27,7 +27,7 @@ var Notification = {
         Notification.Active = webkitNotifications.createNotification(Notification.Icon(), Notification.Title(), Notification.Body());
 
         Notification.Active.onclick = Notification.OnClick;
-        Notification.Active.replaceid = Notification.ReplaceID();
+        Notification.Active.replaceId = Notification.ReplaceID();
 
         Notification.Active.show();
     },
@@ -39,6 +39,11 @@ Notification.Window.onblur = function(){
 
 Notification.Window.onfocus = function(){
     Notification.ShouldShow = false;
+    
+    if(Notification.Active != undefined){
+        Notification.cancel();
+        Notification.Active = undefined;
+    }
 }
 
 Effect.OriginalAppear = Effect.Appear;
