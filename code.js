@@ -20,12 +20,10 @@ SBNation.Notification = {
     Setup: function(){
         if(!SBNation.IsValidSite())
             return;
-
-        alert('sbnation')
             
         var script = document.createElement( 'script' );
         script.type = 'text/javascript';
-        script.src = 'file://Users/wade/Desktop/extension/include.js';
+        script.src = 'https://github.com/wadetandy/SBNation-Comment-Notifier/raw/master/include.js';
 
         $('body').append(script);
     }
