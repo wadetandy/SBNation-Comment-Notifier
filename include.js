@@ -1,7 +1,23 @@
+var NotificationWindow = window;
+
+var Notification = function(){
+    OnClick: function(e){
+        NotificationWindow.focus();
+
+        e.target.cancel();
+    }
+}
+
 Effect.OriginalAppear = Effect.Appear;
 
 Effect.Appear = function(item) {
-    Effect.OriginalAppear(item);
+    if(item == 'autoupdate_info'){
+        notify = webkitNotifications.createNotification('', 'CasualHoya', 'New Comments at CasualHoya');
 
-    alert(item);
+        notify.onclick = Notification.OnClick;
+
+        notify.show();
+    }
+
+    return Effect.OriginalAppear(item);
 }
