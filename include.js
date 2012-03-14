@@ -58,6 +58,7 @@ Effect.OriginalAppear = Effect.Appear;
 
 Effect.Appear = function(item) {
     if(item == 'autoupdate_info'){
+        $('autoupdate_info').fire('sbn:newcomments', $('autoupdate_info'));
         Notification.CreateAndShow();
     }
 
