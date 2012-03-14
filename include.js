@@ -10,14 +10,14 @@ var Notification = {
         found = null;
         $$('link').each(function(link){
             if(link.rel == 'shortcut icon'){
-                found = item;
+                found = link;
             }
-        }
+        })
         
         if(found == null){
             return "";
         }else{
-            return item.href
+            return item.href;
         }
     }
 }
