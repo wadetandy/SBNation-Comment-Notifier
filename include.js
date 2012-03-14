@@ -17,7 +17,7 @@ var Notification = {
         return 'New Comments on ' + document.title;
     },
     ReplaceID: function(){
-        Notification.Window.location.href;
+        return Notification.Window.location.href;
     },
     CreateAndShow: function(){
         if(!Notification.ShouldShow){
