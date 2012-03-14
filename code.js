@@ -1,12 +1,12 @@
 var SBNation = {
     IsValidSite: function(){
         if(SBNation.IsSBN)
-            return truea
+            return true;
 
-        $$('script').each(function(script){
-            if(/sbnation\.com\/javascripts\/universal/i.test(script.src)){
+        $('script').each(function(script){
+            var src = $(this).attr('src')
+            if(/sbnation\.com\/javascripts\/universal/i.test(src)){
                 SBNation.IsSBN = true;
-
             }
         });
 
@@ -21,7 +21,7 @@ SBNation.AppendScript = function(url){
     script.type = 'text/javascript';
     script.src = url;
 
-    $$('body')[0].appendChild(script);
+    $('body').append(script);
 }
 
 SBNation.Notification = {
