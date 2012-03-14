@@ -7,6 +7,9 @@ var Notification = {
 
         e.target.cancel();
     },
+    OnError: function(e){
+        console.log('there was an error with this notification');
+    }
     Icon: function(){
         return $$('#logo img')[0].src;
     },
@@ -14,7 +17,11 @@ var Notification = {
         return $$('#logo img')[0].alt;
     },
     Body: function(){
-        return 'New Comments on ' + document.title;
+        var thread_title = document.title;
+        var blog_title = ' - ' + Notification.Title();
+        
+        thread_title = thread_title.substr(0, thread_title.indexOf(blog_title));
+        return 'New Comments on ' + thread_title;
     },
     ReplaceID: function(){
         return Notification.Window.location.href;
@@ -27,6 +34,7 @@ var Notification = {
         Notification.Active = webkitNotifications.createNotification(Notification.Icon(), Notification.Title(), Notification.Body());
 
         Notification.Active.onclick = Notification.OnClick;
+        Notification.Active.onerror = Notification.OnError;
         Notification.Active.replaceId = Notification.ReplaceID();
 
         Notification.Active.show();
@@ -41,7 +49,7 @@ Notification.Window.onfocus = function(){
     Notification.ShouldShow = false;
     
     if(Notification.Active != undefined){
-        Notification.cancel();
+        Notification.Active.cancel();
         Notification.Active = undefined;
     }
 }
