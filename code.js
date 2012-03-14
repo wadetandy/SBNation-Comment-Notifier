@@ -5,7 +5,7 @@ var SBNation = {
 
         $$('script').each(function(script){
             if(/sbnation\.com\/javascripts\/universal/i.test(script.src)){
-                SBNation.IsSBN = true;   
+                SBNation.IsSBN = true;
 
             }
         });
