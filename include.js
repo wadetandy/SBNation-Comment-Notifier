@@ -17,7 +17,7 @@ var Notification = {
         if(found == null){
             return "";
         }else{
-            return item.href;
+            return found.href;
         }
     }
 }
