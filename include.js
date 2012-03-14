@@ -44,10 +44,8 @@ Effect.OriginalAppear = Effect.Appear;
 
 Effect.Appear = function(item) {
     if(item == 'autoupdate_info'){
-        
+        Notification.CreateAndShow();
     }
 
     return Effect.OriginalAppear(item);
 }
-
-Notification.CreateAndShow();
