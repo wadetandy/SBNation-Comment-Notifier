@@ -58,8 +58,8 @@ Effect.OriginalAppear = Effect.Appear;
 
 Effect.Appear = function(item) {
     if(item == 'autoupdate_info'){
-        $('autoupdate_info').fire('sbn:newcomments', $('autoupdate_info'));
-        Notification.CreateAndShow();
+        $('chrome-notification-plugin').innerHTML = new Date().getTime();
+        //Notification.CreateAndShow();
     }
 
     return Effect.OriginalAppear(item);
