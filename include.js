@@ -7,18 +7,7 @@ var Notification = {
         e.target.cancel();
     },
     Icon: function(){
-        found = null;
-        $$('link').each(function(link){
-            if(link.rel == 'shortcut icon'){
-                found = link;
-            }
-        })
-        
-        if(found == null){
-            return "";
-        }else{
-            return found.href;
-        }
+        return $$('#logo img')[0].src;
     }
 }
 
@@ -29,6 +18,7 @@ Effect.Appear = function(item) {
         notify = webkitNotifications.createNotification(Notification.Icon, 'CasualHoya', 'New Comments at CasualHoya');
 
         notify.onclick = Notification.OnClick;
+        notify.replaceid = window.location.href;
 
         notify.show();
     }
