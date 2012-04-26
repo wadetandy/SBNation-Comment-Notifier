@@ -2,13 +2,20 @@ var SBNation = {
     IsSBN: false,
 
     IsValidSite: function(){
+        if(SBNation.IsSBN){
+            return true;
+        }
+
         $('script').each(function(script){
             var src = $(this).attr('src')
             if(/sbnation\.com\/javascripts\/universal/i.test(src)){
-                return true;
+                SBNation.IsSBN = true;
             }
         });
-        return false;
+
+        if(SBNation.IsSBN){
+            return true;
+        }
     },
 
     Setup: function(){
