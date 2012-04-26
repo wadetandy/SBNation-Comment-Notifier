@@ -1,7 +1,7 @@
 {
-  "name": "SBNation Comments Notifier",
+  "name": "SBNation Notifier",
   "version": "1.0",
-  "description": "The first extension that I made.",
+  "description": "Creates a desktop notification when there are new comments in a background thread",
   "page_action": {
     "default_icon": "icon.png"
   },
@@ -11,8 +11,11 @@
       "js": ["jquery.js", "code.js"]
     }
   ],
+  "background": {
+    "scripts": ["background.js"]
+  },
   "permissions": [
-    "notifications"
-  ],
-  "run_at": "document_idle"
+    "notifications",
+    "tabs"
+  ]
 }
