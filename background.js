@@ -31,8 +31,11 @@ chrome.extension.onRequest.addListener(function(request, sender, sendResponse) {
         sendResponse({status: "OK"});
     }
     else if (request.type == "HideNotification"){
-        SBNation.Notification.Active[source_tab.id].cancel();
-        SBNation.Notification.Active[source_tab.id] = undefined;
+        source_tab = sender.tab
+        if (SBNation.Notification.Active[source_tab.id] != undefined){
+            SBNation.Notification.Active[source_tab.id].cancel();
+            SBNation.Notification.Active[source_tab.id] = undefined;
+        }
 
         sendResponse({status: "OK"});
     }
