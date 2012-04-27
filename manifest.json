@@ -1,7 +1,7 @@
 {
   "name": "SBNation Notifier",
-  "version": "1.0",
-  "description": "Creates a desktop notification when there are new comments in a background thread",
+  "version": "1.0.1",
+  "description": "Creates a desktop notification when there are new comments on any SBNation post in an open background tab.",
   "page_action": {
     "default_icon": "icon.png"
   },
