@@ -27,6 +27,10 @@ var SBNation = {
             $('body').append(event_div);
             SBNation.AppendScript(script_url);
 
+            document.getElementById('wtandy-notification-plugin').addEventListener('NewCommentsEvent', function() {
+                SBNation.Notification.CreateAndShow();
+            });
+
             window.onblur = function(){
                 SBNation.Notification.ShouldShow = true;
             }
@@ -63,6 +67,7 @@ SBNation.Notification = {
     ShouldShow: false,
 
     OnClick: function(e){
+        console.log('focus');
         window.focus();
     },
 
