@@ -10,7 +10,7 @@ SBNation.Notification = {
         SBNation.Notification.Active[source_tab.id] = webkitNotifications.createNotification(icon, title, body);
 
         SBNation.Notification.Active[source_tab.id].onclick = function(e){
-            //chrome.tabs.sendRequest(source_tab.id, {type: "NotificationClick"});
+            chrome.tabs.sendRequest(source_tab.id, {type: "NotificationClick"});
             chrome.tabs.update(source_tab.id, {active: true});
             e.target.cancel();
             SBNation.Notification.Active[source_tab.id] = undefined;
