@@ -11,9 +11,3 @@ Effect.Appear = function(item) {
 
     return Effect.OriginalAppear(item);
 }
-
-document.getElementById('wtandy-notification-plugin').addEventListener('WindowFocusEvent', function() {
-  console.log('window focus event');
-  window.focus();
-});
-

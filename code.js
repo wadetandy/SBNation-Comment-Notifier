@@ -27,10 +27,6 @@ var SBNation = {
             $('body').append(event_div);
             SBNation.AppendScript(script_url);
 
-            document.getElementById('wtandy-notification-plugin').addEventListener('NewCommentsEvent', function() {
-                SBNation.Notification.CreateAndShow();
-            });
-
             window.onblur = function(){
                 SBNation.Notification.ShouldShow = true;
             }
@@ -45,10 +41,10 @@ var SBNation = {
             }
 
             chrome.extension.onRequest.addListener(function(request, sender, sendResponse) {
-                if (request.type == "NotificationClick"){
-                    sendResponse({status: "OK"});
 
+                if (request.type == "NotificationClick"){
                     SBNation.Notification.OnClick();
+                    sendResponse({status: "OK"});
                 }
             });
         }
@@ -95,9 +91,9 @@ SBNation.Notification = {
     },
 
     CreateAndShow: function(){
-        // if(!SBNation.Notification.ShouldShow){
-            // return;
-        // }
+         if(!SBNation.Notification.ShouldShow){
+             return;
+         }
 
         var request = {
             type: "CreateNotification",
@@ -108,61 +104,8 @@ SBNation.Notification = {
         };
 
         chrome.extension.sendRequest(request, function(response) {
-            console.log(response.status);
         });
-
-        // SBNation.Notification.Active = webkitNotifications.createNotification(SBNation.Notification.Icon(), SBNation.Notification.Title(), SBNation.Notification.Body());
-
-        // SBNation.Notification.Active.onclick = SBNation.Notification.OnClick;
-        // SBNation.Notification.Active.onerror = SBNation.Notification.OnError;
-        // SBNation.Notification.Active.replaceId = SBNation.Notification.ReplaceID();
-
-        // SBNation.Notification.Active.show();
     },
 }
 
 SBNation.Setup();
-
-/*
-var SBNation = {};
-
-SBNation.Notification = {
-    Active: {},
-    OnError: function(e){
-        console.log('there was an error with this notification');
-    },
-
-    CreateAndShow: function(icon, title, body, replace_id, source_tab){
-        SBNation.Notification.Active[source_tab.id] = webkitNotifications.createNotification(icon, title, body);
-
-        SBNation.Notification.Active.onclick = function(e){
-            chrome.tabs.sendRequest(source_tab.id, {type: "NotificationClick"});
-            e.target.cancel();
-            SBNation.Notification.Active[source_tab.id] = undefined;
-        };
-
-        SBNation.Notification.Active[source_tab.id].onerror = SBNation.Notification.OnError;
-        SBNation.Notification.Active[source_tab.id].replaceId = replace_id;
-
-        SBNation.Notification.Active[source_tab.id].show();
-    },
-}
-
-
-chrome.extension.onRequest.addListener(function(request, sender, sendResponse) {
-    console.log(request.type);
-    if (request.type == "CreateNotification"){
-        SBNation.Notification.CreateAndShow(request.icon, request.title, request.body, request.replace_id, sender.tab);
-        sendResponse({status: "OK"});
-    }
-    else if (request.type == "HideNotification"){
-        SBNation.Notification.Active[source_tab.id].cancel();
-        SBNation.Notification.Active[source_tab.id] = undefined;
-
-        sendResponse({status: "OK"});
-    }
-    else {
-        sendResponse({status: "Invalid Request Type"})
-    }
-});
-*/
