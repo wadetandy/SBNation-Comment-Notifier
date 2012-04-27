@@ -11,3 +11,8 @@ Effect.Appear = function(item) {
 
     return Effect.OriginalAppear(item);
 }
+
+document.getElementById('wtandy-notification-plugin').addEventListener('WindowFocusEvent', function() {
+    SBN.Comments.Cycle.remove();
+    SBN.Comments.Cycle.next();
+});
