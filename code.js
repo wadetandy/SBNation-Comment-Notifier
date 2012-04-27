@@ -46,7 +46,6 @@ var SBNation = {
 
             chrome.extension.onRequest.addListener(function(request, sender, sendResponse) {
                 if (request.type == "NotificationClick"){
-                    window.focus();
                     var event = document.createEvent('Event');
                     var eventDiv = document.getElementById('wtandy-notification-plugin');
 
