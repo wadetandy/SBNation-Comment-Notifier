@@ -27,6 +27,10 @@ var SBNation = {
             $('body').append(event_div);
             SBNation.AppendScript(script_url);
 
+            document.getElementById('wtandy-notification-plugin').addEventListener('NewCommentsEvent', function() {
+                SBNation.Notification.CreateAndShow();
+            });
+
             window.onblur = function(){
                 SBNation.Notification.ShouldShow = true;
             }
@@ -41,9 +45,15 @@ var SBNation = {
             }
 
             chrome.extension.onRequest.addListener(function(request, sender, sendResponse) {
-
                 if (request.type == "NotificationClick"){
-                    SBNation.Notification.OnClick();
+                    window.focus();
+                    var event = document.createEvent('Event');
+                    var eventDiv = document.getElementById('wtandy-notification-plugin');
+
+                    event.initEvent('WindowFocusEvent', true, true);
+                    eventDiv.dispatchEvent(event);
+                    window.focus();
+
                     sendResponse({status: "OK"});
                 }
             });
@@ -61,14 +71,6 @@ var SBNation = {
 
 SBNation.Notification = {
     ShouldShow: false,
-
-    OnClick: function(e){
-        window.focus();
-    },
-
-    OnError: function(e){
-        console.log('there was an error with this notification');
-    },
 
     Icon: function(){
         return $('#logo img')[0].src;
