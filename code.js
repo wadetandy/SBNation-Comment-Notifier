@@ -38,10 +38,7 @@ var SBNation = {
             window.onfocus = function(){
                 SBNation.Notification.ShouldShow = false;
 
-                if(SBNation.Notification.Active != undefined){
-                    SBNation.Notification.Active.cancel();
-                    SBNation.Notification.Active = undefined;
-                }
+                chrome.extension.sendRequest({type:"HideNotification"});
             }
 
             chrome.extension.onRequest.addListener(function(request, sender, sendResponse) {
@@ -67,7 +64,6 @@ SBNation.Notification = {
     ShouldShow: false,
 
     OnClick: function(e){
-        console.log('focus');
         window.focus();
     },
 
